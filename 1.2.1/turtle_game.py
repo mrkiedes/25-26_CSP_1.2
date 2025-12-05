@@ -8,9 +8,15 @@ score = 0
 font_setup = ("Arial", 20, "normal")
 
 #-----initialize turtle-----
+# Score turtle
 score_writer = trtl.Turtle()
 score_writer.penup()
 
+# Turtle to draw a box
+box_turtle = trtl.Turtle()
+box_turtle.penup()
+
+# Shape turtle
 meowl = trtl.Turtle()
 meowl.shape("circle")
 meowl.color(spot_color)
@@ -21,19 +27,23 @@ meowl.penup()
 # Draw the box for the score
 def scoreBox():
     # Set up the starting location and pendown
-    score_writer.goto(275, 325)
-    score_writer.pendown()
+    box_turtle.goto(275, 325)
+    box_turtle.pendown()
 
     # Draw the box
     for sides in range(2):
-        score_writer.forward(100)
-        score_writer.left(90)
-        score_writer.forward(50)
-        score_writer.left(90)
+        box_turtle.forward(100)
+        box_turtle.left(90)
+        box_turtle.forward(50)
+        box_turtle.left(90)
 
     # Place score_writer where it will write the score
     score_writer.penup()
-    score_writer.goto(300, 325)
+    score_writer.goto(300, 332)
+
+    # Hide the turtles
+    score_writer.hideturtle()
+    box_turtle.hideturtle()
 
 # Get a score boost, move the turtle randomly
 def spot_clicked(x, y):
@@ -51,7 +61,9 @@ def update_score():
     global score
     # Increment the score by 1
     score += 1
-    # print the score
+    # Clear out the prior score
+    score_writer.clear()
+    # Print the current score
     score_writer.write(score, font=font_setup)
 
 #-----events----------------

@@ -6,11 +6,16 @@ import random as rand
 spot_color = "purple"
 score = 0
 font_setup = ("Arial", 20, "normal")
+timer = 5
+counter_interval = 1000   #1000 represents 1 second
+timer_up = False
 
 #-----initialize turtle-----
 # Score turtle
 score_writer = trtl.Turtle()
 score_writer.penup()
+counter =  trtl.Turtle()
+counter.penup()
 
 # Turtle to draw a box
 box_turtle = trtl.Turtle()
@@ -47,7 +52,11 @@ def scoreBox():
 
 # Get a score boost, move the turtle randomly
 def spot_clicked(x, y):
-    change_position()
+    global timer_up
+    if timer_up == False:
+        change_position()
+    else:
+        meowl.hideturtle()
 
 def change_position():
     # Move the turtle to a random location
@@ -66,9 +75,29 @@ def update_score():
     # Print the current score
     score_writer.write(score, font=font_setup)
 
+# Counter setup
+def counter_setup():
+    counter.forward(-200)
+    counter.left(90)
+    counter.forward(300)
+    counter.right(90)
+    counter.hideturtle()
+
+# Start the countown and update it each frame
+def countdown():
+  global timer, timer_up
+  counter.clear()
+  if timer <= 0:
+    counter.write("Time's Up", font=font_setup)
+    timer_up = True
+  else:
+    counter.write("Timer: " + str(timer), font=font_setup)
+    timer -= 1
+    counter.getscreen().ontimer(countdown, counter_interval)
 #-----events----------------
 meowl.onclick(spot_clicked)
-
+counter_setup()
 scoreBox()
 wn = trtl.Screen()
+wn.ontimer(countdown, counter_interval)
 wn.mainloop()

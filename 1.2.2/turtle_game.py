@@ -95,6 +95,7 @@ def countdown():
   if timer <= 0:
     counter.write("Time's Up", font=font_setup)
     timer_up = True
+    manage_leaderboard()
   else:
     counter.write("Timer: " + str(timer), font=font_setup)
     timer -= 1
@@ -120,6 +121,8 @@ def manage_leaderboard():
 
   else:
     lb.draw_leaderboard(False, leader_names_list, leader_scores_list, moewl, score)
+
+
 #-----events----------------
 meowl.onclick(spot_clicked)
 counter_setup()

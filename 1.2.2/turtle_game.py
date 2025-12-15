@@ -11,6 +11,11 @@ font_setup = ("Arial", 20, "normal")
 timer = 5
 counter_interval = 1000   #1000 represents 1 second
 timer_up = False
+wn = trtl.Screen()
+
+# Set the screen size to 800x600 pixels
+wn.setup(width=1000, height=1000)
+
 
 #-----initialize turtle-----
 leaderboard_file_name = "a122_leaderboard.txt"
@@ -127,6 +132,7 @@ def manage_leaderboard():
 meowl.onclick(spot_clicked)
 counter_setup()
 scoreBox()
-wn = trtl.Screen()
+
+
 wn.ontimer(countdown, counter_interval)
 wn.mainloop()

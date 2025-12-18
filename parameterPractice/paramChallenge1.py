@@ -7,4 +7,4 @@
 # return that value
 
 # Method 3: name it "toe" that takes no parameters.  This method should print
-# the results of a method call to "tic(3, 5)" and "toe(4)" to the console
+# the results of a method call to "tic(3, 5)" and "tac(4)" to the console
